@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="tytul">Projekt clicker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div id="jumbotron">
+  <div class="text-bg-primary text-center m-2 p-4 rounded">
+    <h1>Witaj na stronie clicker</h1>
+    <h3>Zapoznaj się z zasadami gry poniżej:</h3>
+    <p id="zasady">Zasady są proste jak drut, wystarczy klikać w przycisk poniżej i uzbierać jak największą ilość punktów</p>
+  </div>
+</div>
+
+  <a id="alert"></a>
+<div id="gra">
+  <div class="mx-auto pt-5 d-block text-center">
+    <button class="btn btn-success hover" id="clicker">TU JESTEM</button>
+    <br>
+    <p class="badge text-bg-dark" id="punkty">0</p>
+    <a id="pasek1"></a>
+  </div>
+</div>  
+
+
+
+
+<script>
+  const clicker = document.querySelector('#clicker');
+  const punktylicznik = document.querySelector('#punkty');
+  const alert = document.querySelector('#alert');
+  const pasek1 = document.querySelector('#pasek1');
+  const zasady = document.querySelector('#zasady');
+  const jumbotron = document.querySelector('#jumbotron');
+  const tytul = document.querySelector('#tytul');
+  const gra = document.querySelector('#gra');
+  let punkty = 0;
+
+  function updatePunkty(){
+    punktylicznik.innerHTML = punkty;
+    if(punkty<3){
+      alert.innerHTML +=`<div class="alert m-2 alert-success alert-dismissible "> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button> 
+        <Strong>Hurra!</Strong> dostałeś punkt. 
+        </div>`; 
+    }
+    else if(punkty==3){
+      alert.innerHTML +=`<div class="alert m-2 alert-info alert-dismissible text-center"> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button> 
+        Dobra już przestaję, bo to jest zły design strony a my tu nie dla frustracji przecież :D
+        </div>`; 
+    }
+    else if(punkty==15){
+      alert.innerHTML +=`<div class="alert m-2 alert-info alert-dismissible text-center"> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button> 
+        Trochę nudna ta strona może rozkręćmy to jakoś :)<br>Spróbuj uzupełnić ten pasek zdobywając punkty
+        </div>`; 
+        pasek1.innerHTML = `<div class="progress mx-5 mb-2 rounded-pill" id="pasek">
+        <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-dark" style="width:`+punkty+`%">WEEE! :D</div>
+        </div>`; 
+        clicker.innerHTML = "Klikaj mnie";
+    }
+    else if(punkty>15&&punkty<100){
+      pasek1.innerHTML=`<div class="progress mx-5 mb-2 rounded-pill" id="pasek">
+        <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-dark" style="width:`+punkty+`%">WEEE! :D</div>
+        </div>`;     
+    }
+    else if(punkty==100){
+      pasek1.innerHTML=`<div class="progress mx-5 mb-2 rounded-pill" id="pasek">
+        <div class="progress-bar progress-bar-striped progress-bar-animated text-bg-success" style="width:`+punkty+`%">ooo to koniec jazdy:(</div>
+        </div>`; 
+        alert.innerHTML +=`<div class="alert m-2 alert-primary alert-dismissible text-center"> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button> 
+        Okej udało ci się wypełnić pasek, hmm no i co teraz?
+        </div>`;  
+    }
+    else if(punkty==105){
+      alert.innerHTML +=`<div class="alert m-2 alert-danger alert-dismissible text-center"> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button> 
+        usuwam ten przycisk, on nie będzie nam już potrzebny :)
+        </div>`; 
+      zasady.innerHTML = "Gdzie jest przycisk z punktami (╯°□°）╯︵ ┻━┻ ";
+      pasek1.innerHTML = "";
+      clicker.innerHTML = "";
+      jumbotron.innerHTML = `  <div class="text-bg-warning text-center m-2 p-4 rounded">
+    <h1>Witaj na stronie znajdź punkty</h1>
+    <h3>Nowe Zasady:</h3>
+    <p id="zasady">Gdzie jest przycisk z punktami (╯°□°）╯︵ ┻━┻ </p>
+    </div>`;
+    tytul.innerHTML = "Projekt znajdź przycisk";
+    gra.innerHTML=`<div class="btn-group mx-auto d-block text-center rounded"> 
+  <button class="btn btn-success" id="zaladuj">Załaduj</button> 
+ <button class="btn btn-danger" id="rozladuj">Rozładuj</button> 
+     <br>
+    <p class="badge text-bg-dark" id="punkty">105</p>
+</div> `;
+    }
+  }
+
+  clicker.addEventListener('click', (e=>{
+    punkty +=5;
+    updatePunkty();
+    
+  }))
+
+
+
+
+</script>  
+</body>
+</html>
