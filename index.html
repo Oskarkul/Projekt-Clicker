@@ -38,7 +38,11 @@
   const jumbotron = document.querySelector('#jumbotron');
   const tytul = document.querySelector('#tytul');
   const gra = document.querySelector('#gra');
+  const Niespodzianka = document.querySelector('#surprise');
   let punkty = 0;
+
+
+
 
   function updatePunkty(){
     punktylicznik.innerHTML = punkty;
@@ -86,15 +90,15 @@
       zasady.innerHTML = "Gdzie jest przycisk z punktami (╯°□°）╯︵ ┻━┻ ";
       pasek1.innerHTML = "";
       clicker.innerHTML = "";
-      jumbotron.innerHTML = `  <div class="text-bg-warning text-center m-2 p-4 rounded">
-    <h1>Witaj na stronie znajdź punkty</h1>
+      jumbotron.innerHTML = `  <div class="text-bg-success text-center m-2 p-4 rounded">
+    <h1>Witaj na stronie Wygrana</h1>
     <h3>Nowe Zasady:</h3>
-    <p id="zasady">Gdzie jest przycisk z punktami (╯°□°）╯︵ ┻━┻ </p>
+    <p id="zasady">Ciesz się z wygranej</p>
     </div>`;
-    tytul.innerHTML = "Projekt znajdź przycisk";
+    tytul.innerHTML = "Projekt Zwycięstwo";
     gra.innerHTML=`<div class="btn-group mx-auto d-block text-center rounded"> 
-  <button class="btn btn-success" id="zaladuj">Załaduj</button> 
- <button class="btn btn-danger" id="rozladuj">Rozładuj</button> 
+    <a href="surprise.gif"><button class="btn btn-success" id="surprise">Niespodzianka</button></a> 
+    <a href="index.html"><button class="btn btn-danger" id="restart">Zrestartuj Stronę</button></a> 
      <br>
     <p class="badge text-bg-dark" id="punkty">105</p>
 </div> `;
@@ -106,9 +110,6 @@
     updatePunkty();
     
   }))
-
-
-
 
 </script>  
 </body>
